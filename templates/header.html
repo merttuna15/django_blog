@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-sm bg-dark text-bg-light" role="navigation">
+
+    <div class="container-fluid">
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <a class="nav-link active" aria-current="page" href="/" style="color: white">Anasayfa</a>
+        {% if request.user.is_authenticated %}
+            <a class="nav-link " href="/post/create/" style="color:white">Post Oluştur</a>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+            <a class="nav-link " href="/post/myposts/" style="color:white">Postlarım</a>
+        {% endif %}
+
+
+    </ul>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" method="GET" action="{% url 'post:index' %}">
+            <div class="input-group">
+                <div href="/"></div>
+                <label>
+                    <input  class="form-control form-control-dark text-bg-dark " type="text" name="q" placeholder="Search on blog" style="width: 500px" value="{{ request.GET.q }}">
+                </label>
+                <span class="input-group-btn">
+            <input class="btn bg-transparent btn-default" type="submit" value="Ara" style="color:white">
+                    </span>
+            </div>
+        </form>
+
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+
+                    {% if request.user.is_authenticated and request.user.is_superuser %}
+                        <li class="nav-item " style="align-self: end">
+                            <a class="nav-link" href="/admin" style="color: white" >Admin</a>
+                        </li>
+                    {% endif %}
+
+
+                    {% if request.user.is_authenticated %}
+                        <li><a class="nav-link" href="{% url 'accounts:logout' %}" style="color: white"> Çıkış</a></li>
+                        <a class="nav-link" style="color: white"> Hoşgeldin, {{ user.username }}</a>
+                    {% else %}
+                        <li><a class="nav-link" href="{% url 'accounts:login' %}" style="color: white" > Giriş </a></li>
+                        <li><a class="nav-link" href="{% url 'accounts:register' %}" style="color: white" > Üye Ol </a></li>
+                    {% endif %}
+                </ul>
+
+    </div>
+    </div>
+
+</nav>

@@ -1,0 +1,12 @@
+{% load crispy_forms_tags %}
+
+
+<form method="POST">
+    {% if request.user.is_authenticated %}
+    {% csrf_token %}
+    {{ form|crispy }}
+
+    <input type="submit" class="btn btn-primary" value="Yorum Ekle">
+        {% endif %}
+
+</form>
