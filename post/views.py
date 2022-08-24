@@ -1,7 +1,5 @@
 from django.http import Http404
-from django.shortcuts import HttpResponse, render, get_object_or_404, HttpResponseRedirect, redirect
-
-import post
+from django.shortcuts import HttpResponse, render, get_object_or_404, HttpResponseRedirect
 from .models import Post
 from .forms import PostForm, CommentForm
 from django.contrib import messages
